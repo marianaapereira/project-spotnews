@@ -17,6 +17,7 @@
       <li>
         <a href="{% url 'home-page' %}">Home</a>
       </li>
+      {% block links %} {% endblock %}
     </ul>
   </header>
   {% block content %} {% endblock %}

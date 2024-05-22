@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 from django.core.exceptions import ValidationError
 
@@ -21,6 +22,12 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
 
 
 class User(models.Model):
