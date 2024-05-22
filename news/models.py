@@ -116,3 +116,16 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = [
+            'title',
+            'content',
+            'author',
+            'created_at',
+            'image',
+            'categories'
+        ]

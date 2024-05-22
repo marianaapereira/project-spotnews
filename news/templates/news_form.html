@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Formulário para Nova Notícia
+{% endblock %}
+
+{% block links %}
+<li>
+  <a href="{% url 'categories-form' %}">Cadastrar Categorias</a>
+</li>
+<li>
+  <a href="{% url 'news-form' %}">Cadastrar Notícias</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<main>
+  <form method="post" action="{% url 'news-form' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="id_title">Título</label>
+    <input type="text" name="title">
+    <label for="id_content">Conteúdo</label>
+    <textarea name="content"></textarea>
+    <label for="id_author">Autoria</label>
+    <select name="author"></select>
+    <label for="id_created_at">Criado em</label>
+    <input type="date" name="created_at">
+    <label for="id_image">URL da Imagem</label>
+    <input type="file" name="image">
+    {% for category in categories.all %}
+    <div>
+      <label for="id_categories_{{ category.name }}">{{ category.name }}</label>
+      <input type="checkbox" name="categories" id="{{ category.name }}">
+    </div>
+    {% endfor %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+  </form>
+</main>
+{% endblock %}
